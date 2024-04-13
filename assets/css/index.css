@@ -50,10 +50,6 @@ main{
     color:hsl(275, 100%, 67%);
 }
 
-/* .faq-container .faq-qa-container:nth-of-type(n+2) .faq-qa-answer {
-    display:none;
-} */
-
 .faq-container .faq-qa-container .faq-qa-answer{
     display:none;
     font-size:0.8em;
