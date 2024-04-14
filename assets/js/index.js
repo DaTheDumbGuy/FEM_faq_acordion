@@ -18,7 +18,7 @@ faqQaContainers.forEach(faqQaContainer => {
                 const answer = container.querySelector('.faq-qa-answer');
 
                 icon.src = './assets/images/icon-plus.svg';
-                icon.alt = 'Faqs icon plus';
+                icon.alt = 'Toggle FAQ visibility.';
                 answer.classList.remove('show-answer');
             }
         });
@@ -28,8 +28,8 @@ faqQaContainers.forEach(faqQaContainer => {
             ? './assets/images/icon-minus.svg'
             : './assets/images/icon-plus.svg';
         faqIconImg.alt = faqIconImg.src.includes('icon-plus.svg')
-            ? 'Faqs icon minus'
-            : 'Faqs icon plus';
+            ? 'Collapse FAQ answer'
+            : 'Toggle FAQ visibility.';
 
         faqAnswerParagraph.classList.toggle('show-answer');
     });
