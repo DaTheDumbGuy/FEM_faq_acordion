@@ -1,54 +1,35 @@
-let elementClicked = document.querySelector('.show-answer');
+// Select the currently open FAQ answer
+let currentOpenAnswer = document.querySelector('.show-answer');
 
+// Event listener for clicks
 document.addEventListener('click', e => {
     const clickedContainer = e.target.closest('.faq-qa-icon-container');
     if (!clickedContainer) return; // Exit if clicked outside of any .faq-qa-icon-container
 
+    // Find the FAQ answer paragraph corresponding to the clicked icon
     const faqAnswerParagraph = clickedContainer.nextElementSibling;
     const faqIconImg = clickedContainer.querySelector('.faq-qa-icon');
 
     // Check if the answer is already open, if yes, return
     if (faqAnswerParagraph.classList.contains('show-answer')) {
         return;
-        //@Grego Here's your recommended approach, though I didn't create a function for changing the icons (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-    } else if (elementClicked.previousElementSibling !== clickedContainer) {
-        const curOpenFaq = elementClicked.previousElementSibling;
-        const iconImg = curOpenFaq.querySelector('.faq-qa-icon');
-
-        iconImg.src = './assets/images/icon-plus.svg';
-        iconImg.alt = 'Toggle FAQ visibility.';
-        elementClicked.classList.remove('show-answer');
-        elementClicked = faqAnswerParagraph;
-
-        faqIconImg.src = faqIconImg.src.includes('icon-plus.svg')
-            ? './assets/images/icon-minus.svg'
-            : './assets/images/icon-plus.svg';
-        faqIconImg.alt = faqIconImg.src.includes('icon-plus.svg')
-            ? 'Collapse FAQ answer'
-            : 'Toggle FAQ visibility.';
-
-        faqAnswerParagraph.classList.toggle('show-answer');
     }
+    //@Grego Here's your recommended approach, though I didn't create a function for changing the icons (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+    // Change the currently open FAQ icon to a plus icon and hide its corresponding answer
+    const currentOpenFaq = currentOpenAnswer.previousElementSibling;
+    const currentIconImg = currentOpenFaq.querySelector('.faq-qa-icon');
 
-    // Close all other .faq-qa-icon-container elements
-    // document.querySelectorAll('.faq-qa-icon-container').forEach(container => {
-    //     if (container !== clickedContainer) {
-    //         const iconImg = container.querySelector('.faq-qa-icon');
-    //         const answerParagraph = container.nextElementSibling;
+    currentIconImg.src = './assets/images/icon-plus.svg';
+    currentIconImg.alt = 'Toggle FAQ visibility.';
+    currentOpenAnswer.classList.remove('show-answer');
 
-    //         iconImg.src = './assets/images/icon-plus.svg';
-    //         iconImg.alt = 'Toggle FAQ visibility.';
-    //         answerParagraph.classList.remove('show-answer');
-    //     }
-    // });
+    // Update the currently open FAQ answer to the newly clicked one
+    currentOpenAnswer = faqAnswerParagraph;
 
-    // Toggle current .faq-qa-icon-container
-    // faqIconImg.src = faqIconImg.src.includes('icon-plus.svg')
-    //     ? './assets/images/icon-minus.svg'
-    //     : './assets/images/icon-plus.svg';
-    // faqIconImg.alt = faqIconImg.src.includes('icon-plus.svg')
-    //     ? 'Collapse FAQ answer'
-    //     : 'Toggle FAQ visibility.';
+    // Update current clickedContainer icon to display collapsed FAQ state (icon-minus)
+    faqIconImg.src = './assets/images/icon-minus.svg'
+    faqIconImg.alt = 'Collapse FAQ answer';
 
-    // faqAnswerParagraph.classList.toggle('show-answer');
+    // Toggle visibility of the clicked FAQ answer
+    faqAnswerParagraph.classList.toggle('show-answer');
 });
